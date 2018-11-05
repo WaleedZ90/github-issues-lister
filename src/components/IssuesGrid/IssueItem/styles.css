@@ -1,0 +1,13 @@
+.open-state-icon {
+    color: #29a746;
+}
+
+.closed-state-icon {
+    color: #cd2b37;
+}
+
+.open-state-icon,
+.closed-state-icon {
+    margin-right: 5px;
+    font-size: 30px;
+}
