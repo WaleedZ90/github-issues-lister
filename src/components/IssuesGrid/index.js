@@ -36,7 +36,8 @@ export default class IssuesGrid extends Component {
                 value: "desc"
             }
         ],
-        selectedSort: "desc"
+        selectedSort: "desc",
+        pageNumber: 1
     };
 
     componentDidMount() {
@@ -82,6 +83,18 @@ export default class IssuesGrid extends Component {
         });
     };
 
+    handlePaging = (nextPage) => {
+        this.setState({ pageNumber: nextPage }, () => {
+            const { selectedFilter, selectedSort, pageNumber } = this.state;
+            const filters = {
+                state: selectedFilter,
+                direction: selectedSort,
+                page: pageNumber
+            };
+            this.fetchIssues(filters);
+        });
+    }
+
     renderDropdownFilter = (list, onChangeCallback, selectedValue) => {
         return (
             <fieldset className="dropdown-container">
@@ -108,7 +121,7 @@ export default class IssuesGrid extends Component {
             <section className="issues-container">
                 {
                     issues.map((issue, index) => {
-                        return <IssueItem key={index} issue={issue} />
+                        return <IssueItem issue={issue} />
                     })
                 }
             </section>
@@ -116,7 +129,10 @@ export default class IssuesGrid extends Component {
     }
 
     render() {
-        const { filters, sortList, selectedFilter, selectedSort } = this.state;
+        const { filters, sortList, selectedFilter, selectedSort, pageNumber } = this.state;
+
+        const previousPage = !(pageNumber - 1 <= 0) ? pageNumber - 1 : 1;
+        const nextPage = pageNumber + 1;
 
         const filtersData = {
             label: "Filter by state",
@@ -135,6 +151,10 @@ export default class IssuesGrid extends Component {
                     {this.renderDropdownFilter(sortData, this.handleSortChange, selectedSort)}
                 </section>
                 {this.renderGridItems()}
+                <section className="paging-section">
+                    <button onClick={() => this.handlePaging(previousPage)}>Previous page</button>
+                    <button onClick={() => this.handlePaging(nextPage)}>Next page</button>
+                </section>
             </article>
         );
     }

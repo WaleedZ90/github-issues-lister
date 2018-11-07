@@ -1,15 +1,16 @@
 .filters-container {
     display: flex;
     flex-wrap: wrap;
-    width: 45%;
+    width: 100%;
     margin: 15px 0;
 }
 
 .dropdown-container {
     border: none;
-    width: 30%;
+    width: 45%;
     margin: 0;
     display: flex;
+    max-width: 245px;
 }
 
 .dropdown-label {
@@ -25,4 +26,44 @@
     padding-left: 10px;
     border-radius: 10px;
     outline: none;
+}
+
+.paging-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paging-section button {
+    border: none;
+    background-color: #29a746;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    outline: none;
+    min-width: 150px;
+}
+
+@media (max-width: 576px) {
+    .filters-container {
+        text-align: center;
+    }
+
+    .dropdown-container {
+        width: 100%;
+        max-width: unset;
+    }
+
+    .issues-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .issue-comments {
+        position: static;
+    }
 }

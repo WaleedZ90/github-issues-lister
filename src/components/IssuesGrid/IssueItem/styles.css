@@ -9,5 +9,34 @@
 .open-state-icon,
 .closed-state-icon {
     margin-right: 5px;
-    font-size: 30px;
+    font-size: 35px;
+}
+
+.issue-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.issue-item-header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.issue-item-title {
+    font-size: 19px;
+}
+
+.label-item {
+    margin: 0 4px;
+    padding: 0 10px;
+}
+
+.issue-comments { 
+    position: absolute;
+    right: 0;
+    font-size: 18px;
 }
