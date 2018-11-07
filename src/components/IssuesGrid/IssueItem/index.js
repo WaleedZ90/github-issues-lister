@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import './styles.css';
 
 const IssueItem = ({ issue }) => {
+    const dateFormatted = moment(issue.created_at, 'YYYY-MM-DD').format("DD-MM-YYYY").toString();
     return (
         <div key={issue.id} className="issue-item">
             <aside className="issue-state-icon">
@@ -21,7 +23,7 @@ const IssueItem = ({ issue }) => {
                     </span>
                 </header>
                 <footer className="issue-item-footer">
-                    <span>{`#${issue.number} opened ${issue.created_at} by ${issue.user.login}`}</span>
+                    <span>{`#${issue.number} opened at ${dateFormatted} by ${issue.user.login}`}</span>
                 </footer>
             </article>
         </div>
